@@ -14,7 +14,7 @@ public class EmployeeService {
     private AtomicInteger lastEmpId = new AtomicInteger(0);
 
     public String getFullName(Integer employeeId) throws InterruptedException{
-        //Adding 200ms sleep to see impact on execution
+        //Adding 300ms sleep to see impact on execution
         Thread.sleep(300);
         Employee employee = employeeMap.get(employeeId);
         if(employee != null) {
@@ -24,7 +24,9 @@ public class EmployeeService {
     }
 
 
-    public int createEmployee(Employee employee) {
+    public int createEmployee(Employee employee) throws InterruptedException{
+        //Adding 500ms delay
+        Thread.sleep(50);
         employeeMap.put(lastEmpId.addAndGet(1), employee);
         return lastEmpId.get();
     }

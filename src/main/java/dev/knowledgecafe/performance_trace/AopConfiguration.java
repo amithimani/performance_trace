@@ -15,9 +15,6 @@ public class AopConfiguration {
     @Pointcut("execution(public String dev.knowledgecafe.performance_trace.EmployeeService.getFullName(..)))")
     public void monitor() { }
 
-    @Pointcut("execution(public int dev.knowledgecafe.performance_trace.EmployeeService.createEmployee(..))")
-    public void customMonitor() { }
-
     @Bean
     public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
         return new PerformanceMonitorInterceptor(true);
@@ -30,6 +27,9 @@ public class AopConfiguration {
         return new DefaultPointcutAdvisor(pointcut, performanceMonitorInterceptor());
     }
 
+    // custom performance monitoring intercepter
+    @Pointcut("execution(public int dev.knowledgecafe.performance_trace.EmployeeService.createEmployee(..))")
+    public void customMonitor() { }
 
     @Bean
     public CustomPerformanceIntercepter customPerformanceMonitorInterceptor() {

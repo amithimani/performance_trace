@@ -27,12 +27,12 @@ public class CustomPerformanceIntercepter extends AbstractMonitoringInterceptor 
         } finally {
             long end = System.currentTimeMillis();
             long time = end - start;
-            log.info("Method " + name + " execution lasted:" + time + " ms");
+            log.info("Method " + name + " executed:" + time + " ms");
             log.debug("Method " + name + " execution ended at:" + new Date());
 
             //Additional logger for slow execution
-            if (time > 10) {
-                log.warn("Method execution longer than 10 ms!, Total Slow Transaction count " + slowTransactionCount.incrementAndGet());
+            if (time > 50) {
+                log.warn("Method execution longer than 50 ms!, Total Slow Transaction count " + slowTransactionCount.incrementAndGet());
             }
 
         }
